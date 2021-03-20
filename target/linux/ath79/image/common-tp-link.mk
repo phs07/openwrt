@@ -102,7 +102,6 @@ endef
 define Device/tplink-safeloader
   $(Device/tplink)
   KERNEL := kernel-bin | append-dtb | lzma | tplink-v1-header -O
-  KERNEL_INITRAMFS := $$(KERNEL)
   IMAGE/sysupgrade.bin := append-rootfs | tplink-safeloader sysupgrade | \
     append-metadata | check-size $$$$(IMAGE_SIZE)
   IMAGE/factory.bin := append-rootfs | tplink-safeloader factory
@@ -111,5 +110,4 @@ endef
 define Device/tplink-safeloader-uimage
   $(Device/tplink-safeloader)
   KERNEL := kernel-bin | append-dtb | lzma | uImageArcher lzma
-  KERNEL_INITRAMFS := $$(KERNEL)
 endef
